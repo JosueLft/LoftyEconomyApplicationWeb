@@ -1,0 +1,21 @@
+*, .modal .btn-dark {
+    color: #CC7832;
+}
+
+.search {
+    width: 250px;
+    float: right;
+    border: 2px solid #CC7832;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.input-group-text, .search-text {
+    background-color: #1C1F23;
+    border-radius: 13px;
+    color: #CC7832;
+}
+
+.search-text::placeholder {
+    color: #CC7832;
+}
