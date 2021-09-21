@@ -69,4 +69,12 @@ export class ListRecordComponent implements OnInit {
   private loadRecords() {
     this.records = this.recordService.listarTodos(this.ordem);
   }
+
+  category(record: Record) {
+    if (record.recordCategory == 1) {
+      return "Gastos"
+    } else {
+      return "Ganhos"
+    }
+  }
 }

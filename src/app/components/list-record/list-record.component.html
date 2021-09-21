@@ -52,7 +52,7 @@
               {{ record.date }}
           </td>
           <td>
-              {{ record.recordCategory }}
+              {{ category(record) }}
           </td>
           <td class="functions">
             <button type="button" class="btn btn-sm btn-dark" [routerLink]="['/edit/' + record.id]"><i class="fas fa-edit"></i> Editar</button>

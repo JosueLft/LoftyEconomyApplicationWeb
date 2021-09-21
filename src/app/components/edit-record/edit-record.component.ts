@@ -20,7 +20,7 @@ export class EditRecordComponent implements OnInit {
     description: ["", [Validators.required, Validators.minLength(5)]],
     date: ["", [Validators.required, Validators.maxLength(10)]],
     value: ["", [Validators.required]],
-    recordCategory: ["Gastos", [Validators.required]]
+    recordCategory: ["", [Validators.required]]
   });
 
   constructor(private fb: FormBuilder,
