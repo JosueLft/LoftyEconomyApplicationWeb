@@ -1,1 +1,75 @@
-<p>edit-record works!</p>
+<div class="container panel col-md-9 offset-md-2 col-lg-6 offset-lg-3" [formGroup]="form">
+    <h1 class="text-center">Cadastrar Lançamento</h1>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control sm" id="description" placeholder="example" formControlName="description">
+        <label for="description">Informe uma descrição para o lançamento</label>
+        <span class="error" *ngIf="form.controls.description.touched && form.controls.description.errors?.required">
+            <i class="fas fa-bug"></i>
+            descrição é obrigatória.
+        </span>
+        <span class="error" *ngIf="form.controls.description.touched && form.controls.description.errors?.minlength">
+            <i class="fas fa-bug"></i>
+            descrição deve conter 5 ou mais caracteres.
+        </span>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control sm" id="value" placeholder="name@example.com" formControlName="value">
+        <label for="value">Informe o valor do lançamento</label>
+        <span class="error" *ngIf="form.controls.value.touched && form.controls.value.errors?.required">
+            <i class="fas fa-bug"></i>
+            Valor é obrigatório.
+        </span>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control sm" id="date" placeholder="name@example.com" formControlName="date">
+        <label for="date">Informe a data do lançamento</label>
+        <span class="error" *ngIf="form.controls.date.touched && form.controls.date.errors?.required">
+            <i class="fas fa-bug"></i>
+            Data é obrigatória.
+        </span>
+        <span class="error" *ngIf="form.controls.date.touched && form.controls.date.errors?.minlength">
+            <i class="fas fa-bug"></i>
+            Data deve conter 8 caracteres. Utilize 0 em meses com apenas 1 digito. EX: 11-05-2021
+        </span>
+    </div>
+    <div class="mb-3">
+        <p>Selecione uma categoria de lançamento</p>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" formControlName="recordCategory">
+            <option value="1">Gastos</option>
+            <option value="2">Ganhos</option>
+          </select>
+    </div>
+    <div class="row btn-panel">
+        <div class="col-2"></div>
+        <div class="col-4 btn-panel">
+            <button type="button" class="btn btn-sm btn-dark edit" data-bs-toggle="modal" data-bs-target="#successModal" (click)="editar()" [disabled]="form.invalid"><i class="fas fa-clipboard-list"></i> Salvar Edição</button>
+        </div>
+        <div class="col-4 btn-panel">
+            <button type="button" class="btn btn-sm btn-dark return" [routerLink]="['']"><i class="far fa-hand-point-left"></i> Voltar</button>
+        </div>
+    </div>
+</div>
+  
+<!-- Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="d-flex justify-content-center">
+                    <ng-container *ngIf="!processando">
+                        <span *ngIf="!erro">Lançamento Alterado com sucesso!</span>
+                        <span *ngIf="erro">Erro alterando Lançamento.</span>
+                    </ng-container>
+                    <div *ngIf="processando" class="d-flex justify-content-center">
+                        <div class="spinner-grow" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" [routerLink]="['']">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>

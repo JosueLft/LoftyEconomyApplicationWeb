@@ -21,7 +21,7 @@
         </span>
     </div>
     <div class="form-floating mb-3">
-        <input type="number" class="form-control sm" id="date" placeholder="name@example.com" formControlName="date">
+        <input type="string" class="form-control sm" id="date" placeholder="name@example.com" formControlName="date">
         <label for="date">Informe a data do lançamento</label>
         <span class="error" *ngIf="form.controls.date.touched && form.controls.date.errors?.required">
             <i class="fas fa-bug"></i>
@@ -68,7 +68,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">Confirmar</button>
+                <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" [routerLink]="['']">Listar Lançamentos</button>
+                <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal">Novo Lançamento</button>
             </div>
         </div>
     </div>

@@ -1,0 +1,42 @@
+* {
+    color: #CC7832;
+}
+
+.panel {
+    height: auto;
+    background-color: #212529;
+    border-radius: 15px;
+    border: 2px solid #CC7832;
+}
+
+.panel div {
+    margin-top: 25px;
+}
+
+#task {
+    border: 2px solid #CC7832;    
+}
+
+button {
+    width: 160px;
+    color: #CC7832;
+}
+
+.btn {
+    margin-right: 5px;
+    border: 1px solid;
+}
+
+.panel .btn-panel {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.error {
+    color: red;
+    font-size: 10px;
+    margin-left: 15px;
+}
+.fa-bug {
+    color: red;
+}

@@ -10,19 +10,37 @@ import { RecordService } from 'src/app/services/record.service';
 export class ListRecordComponent implements OnInit {
 
   records: Record[] = [];
+  record: Record = new Record(0, "", "", 0, 0);
 
   spendings = 0;
   gains = 0;
   remaining = 0;
 
-  constructor(private recordService: RecordService) { }
+  constructor(private recordService: RecordService) {}
 
   ngOnInit(): void {
+    this.listarTodos();
+    this.budgets();
+  }
+
+  listarTodos() {
     this.records = this.recordService.listarTodos();
     this.budgets();
   }
 
+  removerId(record: Record) {
+    this.record = record;
+  }
+
+  remover() {
+    this.recordService.remover(this.record.id);
+    this.listarTodos();
+  }
+
   budgets() {
+    this.spendings = 0;
+    this.gains = 0;
+    this.remaining = 0;
     this.records.forEach(record => {
       if(record.recordCategory == 1) {
         this.spendings += record.value;
