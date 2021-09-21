@@ -7,13 +7,15 @@ import { RegisterRecordComponent } from './components/register-record/register-r
 import { ListRecordComponent } from './components/list-record/list-record.component';
 import { EditRecordComponent } from './components/edit-record/edit-record.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalConfirmationComponent } from './components/modal-confirmation/modal-confirmation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterRecordComponent,
     ListRecordComponent,
-    EditRecordComponent
+    EditRecordComponent,
+    ModalConfirmationComponent
   ],
   imports: [
     BrowserModule,
