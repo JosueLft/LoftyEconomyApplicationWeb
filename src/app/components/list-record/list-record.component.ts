@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Record } from 'src/app/models/record.model';
 import { RecordService } from 'src/app/services/record.service';
+import { Ordenacao } from 'src/app/utils/ordenation.enum';
 
 @Component({
   selector: 'app-list-record',
@@ -11,6 +12,7 @@ export class ListRecordComponent implements OnInit {
 
   records: Record[] = [];
   record: Record = new Record(0, "", "", 0, 0);
+  ordem: Ordenacao = Ordenacao.DESC;
 
   spendings = 0;
   gains = 0;
@@ -19,7 +21,7 @@ export class ListRecordComponent implements OnInit {
   constructor(private recordService: RecordService) {}
 
   ngOnInit(): void {
-    this.listarTodos();
+    this.loadRecords();
     this.budgets();
   }
 
@@ -34,7 +36,20 @@ export class ListRecordComponent implements OnInit {
 
   remover() {
     this.recordService.remover(this.record.id);
-    this.listarTodos();
+    this.loadRecords();
+  }
+
+  ascendente() {
+    return this.ordem === Ordenacao.DESC;
+  }
+
+  ordernar() {
+    if(this.ordem === Ordenacao.ASC) {
+      this.ordem = Ordenacao.DESC;
+    } else {
+      this.ordem = Ordenacao.ASC;
+    }
+    this.loadRecords();
   }
 
   budgets() {
@@ -49,5 +64,9 @@ export class ListRecordComponent implements OnInit {
       }
     });
     this.remaining = this.gains - this.spendings;
+  }
+
+  private loadRecords() {
+    this.records = this.recordService.listarTodos(this.ordem);
   }
 }

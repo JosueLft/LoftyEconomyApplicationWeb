@@ -9,22 +9,15 @@ export class RecordService {
 
   constructor() { }
 
-  listarTodos(ordem = Ordenacao.ASC): Record[] {
+  listarTodos(ordem = Ordenacao.DESC): Record[] {
     const records = JSON.parse(localStorage["records"] || "[]");
     if(ordem === Ordenacao.ASC) {
       records.sort((r1: Record, r2: Record) => {
-        const date1 = r1.date.toLowerCase();
-        const date2 = r2.date.toLowerCase();
-        if(date1 > date2) {
-          return 1;
-        } else if(date1 < date2) {
-          return -1;
-        }
-        return 0;
+        return r1.date.localeCompare(r2.date);
       });
     } else {
       records.sort((r1: Record, r2: Record) => {
-        return r1.date.toLowerCase() > r2.date.toLowerCase() ? -1 : 1;
+        return r2.date.localeCompare(r1.date);
       });
     }
     return records;
