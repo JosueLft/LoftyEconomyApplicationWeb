@@ -17,7 +17,7 @@ export class RegisterRecordComponent implements OnInit {
     description: ["", [Validators.required, Validators.minLength(5)]],
     date: ["", [Validators.required, Validators.minLength(8)]],
     value: ["", [Validators.required]],
-    recordCategory: ["Gastos", [Validators.required]]
+    recordCategory: ["1", [Validators.required]]
   });
 
   constructor(private fb: FormBuilder,
@@ -30,7 +30,9 @@ export class RegisterRecordComponent implements OnInit {
       return;
     }
     let record: Record = this.form.value;
-    console.log(record);
+    let date = this.form.controls.date.value;
+    date = date.substr(0, 2) + "-" + date.substr(2, 2) + "-" + date.substr(4);
+    record.date = date;
     this.recordService.adicionar(record);
     this.form.reset();
   }
