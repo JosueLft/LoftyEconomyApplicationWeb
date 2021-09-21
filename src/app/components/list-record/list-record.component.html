@@ -31,7 +31,11 @@
         <tr>
           <th class="col-g">Descrição</th>
           <th class="col-p">Valor</th>
-          <th class="col-p">Data</th>
+          <th class="col-p order-record" (click)="ordernar()">
+            <i *ngIf="ascendente()" class="fas fa-sort-amount-up"></i>
+            <i *ngIf="!ascendente()" class="fas fa-sort-amount-down-alt"></i>&nbsp;
+            Data
+          </th>
           <th class="col-p">Categoria</th>
           <th class="col-p">Funções</th>
         </tr>

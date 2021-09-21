@@ -41,6 +41,7 @@ export class EditRecordComponent implements OnInit {
     this.record.date = this.form.value.date;
     this.record.value = this.form.value.value;
     this.record.recordCategory = this.form.value.recordCategory;
+    this.recordService.editar(this.record);
   }
 
   loadRecord() {
