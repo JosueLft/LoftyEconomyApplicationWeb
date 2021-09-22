@@ -37,6 +37,7 @@ export class ListRecordComponent implements OnInit {
   remover() {
     this.recordService.remover(this.record.id);
     this.loadRecords();
+    this.budgets();
   }
 
   ascendente() {

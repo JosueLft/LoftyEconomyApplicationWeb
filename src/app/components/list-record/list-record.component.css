@@ -47,3 +47,7 @@
 .order-record {
     cursor: pointer;
 }
+
+td {
+    vertical-align: middle;
+}
