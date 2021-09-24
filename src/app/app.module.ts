@@ -9,6 +9,7 @@ import { EditRecordComponent } from './components/edit-record/edit-record.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalConfirmationComponent } from './components/modal-confirmation/modal-confirmation.component';
 import { MascaraDirective } from './directives/mascara.directive';
+import { LoginComponent } from './componets/login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MascaraDirective } from './directives/mascara.directive';
     ListRecordComponent,
     EditRecordComponent,
     ModalConfirmationComponent,
-    MascaraDirective
+    MascaraDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
