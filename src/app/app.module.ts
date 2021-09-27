@@ -9,7 +9,9 @@ import { EditRecordComponent } from './components/edit-record/edit-record.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalConfirmationComponent } from './components/modal-confirmation/modal-confirmation.component';
 import { MascaraDirective } from './directives/mascara.directive';
-import { LoginComponent } from './componets/login/login.component';
+
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -18,15 +20,30 @@ import { LoginComponent } from './componets/login/login.component';
     ListRecordComponent,
     EditRecordComponent,
     ModalConfirmationComponent,
-    MascaraDirective,
-    LoginComponent
+    MascaraDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '877224035411-hbkg74ikqc4n4nutogqslaj5p2a9ik76.apps.googleusercontent.com'
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

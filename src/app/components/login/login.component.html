@@ -1,29 +1,22 @@
-<h1 class="text-center">Login</h1>
+<div *ngIf="isLoggedin === false">
+    <div>
+        <button type="button" (click)="loginWithGoogle()" class="btn btn-danger">Login with Google</button>
+    </div>
+</div>
 
-<form class="container panel">
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control sm" id="email" placeholder="Digite seu email" formControlName="email">
-        <label for="email">Digite seu Email</label>
-        <span>
-            <i class="fas fa-bug"></i>
-            Email é obrigatório.
-        </span>
+<div *ngIf="isLoggedin === true">
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control" [value]="socialUser.firstName" id="firstname" readonly>
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" [value]="socialUser.lastName" id="lastname" readonly>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" [value]="socialUser.email" id="email" readonly>
     </div>
 
-    <div class="form-floating mb-3">
-        <input type="password" class="form-control sm" id="senha" placeholder="Digite sua senha" formControlName="senha">
-        <label for="senha">Digite sua senha</label>
-        <span>
-            <i class="fas fa-bug"></i>
-            Senha é obrigatório.
-        </span>
-        <span>
-            <i class="fas fa-bug"></i>
-            A senha deve conter pelo menos 6 caracteres
-        </span>
-    </div>
-    
-    <div class="text-center">
-        <button type="submit" class="btn btn-sm btn-dark edit"><i class="fas fa-sign-in-alt"></i> Login</button>
-    </div>
-</form>
+    <button type="button" (click)="logOut()" class="btn btn-primary">Log Out</button>
+</div>
