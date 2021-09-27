@@ -1,15 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark top-bar">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['']">Economy</a>
-    <form class="d-flex">
-      <div class="col-5 input-group text-end search">
-        <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-        <input type="text" class="form-control search-text" placeholder="Pesquisa...">
-      </div>
-    </form>
+    <div class="d-flex">
+      <button type="button" class="btn btn-profile">
+        <img class="mini-profile" [src]="user.profilephoto" alt="">
+      </button>
+      <button type="button" (click)="logOut()" class="btn btn-logout">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
   </div>
 </nav>
 <br>
 <div class="container">
-  <router-outlet></router-outlet>
+  <div class="container text-center" *ngIf="isLoggedin === false">
+    <br>
+    <p>Faça o login com sua conta do google</p>
+    <button type="button" (click)="loginWithGoogle()" class="btn btn-light">
+      <i class="fab fa-google-plus-g"></i>
+    </button>
+  </div>
+  <router-outlet *ngIf="isLoggedin === true"></router-outlet>
 </div>

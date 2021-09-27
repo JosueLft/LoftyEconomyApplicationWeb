@@ -2,6 +2,24 @@
     color: #CC7832;
 }
 
+.fa-google-plus-g, .fa-sign-out-alt {
+    color: red;
+}
+
+.btn-logout {
+    background-color: none;
+    vertical-align: middle;
+}
+
+.mini-profile {
+    height: 40px;
+    border-radius: 100px;
+}
+
+.no-padding {
+    padding: 0;
+}
+
 .search {
     width: 250px;
     float: right;
