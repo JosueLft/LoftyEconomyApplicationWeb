@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { User } from './models/user.models';
 
@@ -11,9 +10,9 @@ import { User } from './models/user.models';
 export class AppComponent {
   socialUser!: SocialUser;
   isLoggedin: boolean = false;  
-  user: User = new User("", "", "");
+  user: User = new User("", "", "", []);
   
-  constructor(private socialAuthService: SocialAuthService) { }
+  constructor(private socialAuthService: SocialAuthService) {}
 
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {
@@ -49,6 +48,9 @@ export class AppComponent {
 
   logOut(): void {
     this.socialAuthService.signOut();
+    let user: User = new User("", "", "", []);
+    this.storage(user);
+    this.isLogged();
   }
 
   private storage(user: User) {

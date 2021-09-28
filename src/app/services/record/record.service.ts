@@ -1,13 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Record } from '../models/record.model';
-import { Ordenacao } from '../utils/ordenation.enum';
+import { Observable } from 'rxjs';
+import { Record } from '../../models/record.model';
+import { Ordenacao } from '../../utils/ordenation.enum';
+import { environment as env } from 'src/environments/environment';
+import { User } from 'src/app/models/user.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecordService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   listarTodos(ordem = Ordenacao.DESC): Record[] {
     const records = JSON.parse(localStorage["records"] || "[]");
@@ -23,19 +27,19 @@ export class RecordService {
     return records;
   }
 
-  adicionar(record: Record) {
-    record.id = new Date().getTime();
-    const records = this.listarTodos();
-    records.push(record);
-    this.storage(records);
+  adicionar(user: User): Observable<any> {
+    return this.http.post(
+      env.apiUrlBase + "records/",
+      user
+    );
   }
 
   listarId(id: number): Record {
-    const record = this.listarTodos().find(record => record.id === id);
+    /*const record = this.listarTodos().find(record => record.id === id);
     if(!record) {
       return new Record(0, "", "", 0, 0);
-    }
-    return record;
+    }*/
+    return new Record("", "", "", 0, 0);
   }
 
   editar(record: Record) {
@@ -49,9 +53,9 @@ export class RecordService {
     this.storage(records);
   }
 
-  remover(recordId: number) {
-    const records = this.listarTodos().filter(record => record.id !== recordId);
-    this.storage(records);
+  remover(recordId: string) {
+    /*const records = this.listarTodos().filter(record => record.id !== recordId);
+    this.storage(records);*/
   }
 
   private storage(records: Record[]) {

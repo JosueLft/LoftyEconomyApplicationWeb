@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Record } from 'src/app/models/record.model';
-import { RecordService } from 'src/app/services/record.service';
+import { RecordService } from 'src/app/services/record/record.service';
 
 @Component({
   selector: 'app-edit-record',
@@ -11,7 +11,7 @@ import { RecordService } from 'src/app/services/record.service';
 })
 export class EditRecordComponent implements OnInit {
 
-  record: Record = new Record(0, "", "", 0, 0);
+  record: Record = new Record("", "", "", 0, 0);
 
   erro: boolean = false;
   processando: boolean = false;

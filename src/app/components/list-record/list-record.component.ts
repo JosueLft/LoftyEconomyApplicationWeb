@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Record } from 'src/app/models/record.model';
-import { RecordService } from 'src/app/services/record.service';
+import { RecordService } from 'src/app/services/record/record.service';
 import { Ordenacao } from 'src/app/utils/ordenation.enum';
 
 @Component({
@@ -11,7 +11,7 @@ import { Ordenacao } from 'src/app/utils/ordenation.enum';
 export class ListRecordComponent implements OnInit {
 
   records: Record[] = [];
-  record: Record = new Record(0, "", "", 0, 0);
+  record: Record = new Record("", "", "", 0, 0);
   ordem: Ordenacao = Ordenacao.DESC;
 
   spendings = 0;
