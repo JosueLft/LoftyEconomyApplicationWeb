@@ -9,6 +9,7 @@ import { EditRecordComponent } from './components/edit-record/edit-record.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalConfirmationComponent } from './components/modal-confirmation/modal-confirmation.component';
 import { MascaraDirective } from './directives/mascara.directive';
+import { HttpClientModule } from "@angular/common/http";
 
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
@@ -26,7 +27,8 @@ import { GoogleLoginProvider } from 'angularx-social-login';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    HttpClientModule
   ],
   providers: [
     {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SocialUser } from 'angularx-social-login';
 import { Record } from 'src/app/models/record.model';
-import { RecordService } from 'src/app/services/record.service';
+import { User } from 'src/app/models/user.models';
+import { RecordService } from 'src/app/services/record/record.service';
 import { Ordenacao } from 'src/app/utils/ordenation.enum';
 
 @Component({
@@ -11,7 +13,7 @@ import { Ordenacao } from 'src/app/utils/ordenation.enum';
 export class ListRecordComponent implements OnInit {
 
   records: Record[] = [];
-  record: Record = new Record(0, "", "", 0, 0);
+  record: Record = new Record("", "", "", 0, 0);
   ordem: Ordenacao = Ordenacao.DESC;
 
   spendings = 0;
@@ -22,11 +24,6 @@ export class ListRecordComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadRecords();
-    this.budgets();
-  }
-
-  listarTodos() {
-    this.records = this.recordService.listarTodos();
     this.budgets();
   }
 
@@ -58,9 +55,9 @@ export class ListRecordComponent implements OnInit {
     this.gains = 0;
     this.remaining = 0;
     this.records.forEach(record => {
-      if(record.recordCategory == 1) {
+      if(record.recordCategory == 0) {
         this.spendings += record.value;
-      } else if(record.recordCategory == 2) {
+      } else if(record.recordCategory == 1) {
         this.gains += record.value;
       }
     });
@@ -68,7 +65,13 @@ export class ListRecordComponent implements OnInit {
   }
 
   private loadRecords() {
-    this.records = this.recordService.listarTodos(this.ordem);
+    this.recordService.listarTodos(this.ordem)
+      .subscribe(
+        dados => {
+          this.records = dados;
+          console.log(this.records);
+        }
+      );
   }
 
   category(record: Record) {
